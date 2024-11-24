@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from mongoAdd import mongoAdd
+from mongoGet import mongoGet
 from datetime import datetime
 
 
@@ -33,6 +34,20 @@ def report():
     except Exception as e:
         print("Error: ", e)
         return jsonify([]), 400
+    return jsonify(response), 200
+
+
+# GET location
+@app.route("/api", methods=["GET"])
+def location():
+
+    response = None
+    try:
+        response = mongoGet()
+    except Exception as e:
+        print("Error: ", e)
+        return jsonify([]), 400
+    assert response != None
     return jsonify(response), 200
 
 

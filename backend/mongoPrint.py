@@ -3,6 +3,7 @@ import certifi
 from dotenv import load_dotenv
 
 from pymongo import MongoClient
+from mongoGet import mongoGet
 
 
 ca = certifi.where()
@@ -18,7 +19,8 @@ collection = db.locs
 # for db in client.list_database_names():
 #     print(db)
 
-for i, n in enumerate(collection.find({})):
-    print(i, n)
+# for i, n in enumerate(collection.find({})):
+#     print(i, n)
+print(mongoGet())
 
 client.close()
