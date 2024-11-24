@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import { getData } from "./server.js";
 
 import Report from "./components/Report";
 import SearchBar from "./components/SearchBar";
@@ -13,6 +14,11 @@ const App = () => {
   const [useCamera, setUseCamera] = useState(false);
   const [picture, setPicture] = useState("");
   const [location, setLocation] = useState("");
+  const [data, setData] = useState(null);
+  if (!data) {
+    getData(setData);
+  }
+  console.log(data);
 
   if (!location) {
     if (navigator.geolocation) {
@@ -39,24 +45,24 @@ const App = () => {
       <HashLink smooth to="home#maps">
         <SearchBar />
       </HashLink>
-	<div>
-      <ClusterMap />
-      </div>
 
       <div id="maps">
         {useCamera ? (
           <Camera setUseCamera={setUseCamera} setPicture={setPicture} />
         ) : (
-          <Report
-            picture={picture}
-            location={location}
-            setUseCamera={setUseCamera}
-            reportMenu={reportMenu}
-            setReportMenu={setReportMenu}
-          />
+          <div>
+            <ClusterMap />
+            <Report
+              picture={picture}
+              location={location}
+              setUseCamera={setUseCamera}
+              reportMenu={reportMenu}
+              setReportMenu={setReportMenu}
+            />
+          </div>
         )}
       </div>
-          </div>
+    </div>
   );
 };
 

@@ -19,12 +19,12 @@ async function postReport(location, image, num) {
     .catch((error) => console.log(error));
 }
 
-async function getData() {
+async function getData(setData) {
   await fetch(`${BASE}/api`, {
     method: "GET",
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => setData(data))
     .catch((error) => console.log(error));
 }
 
