@@ -19,4 +19,13 @@ async function postReport(location, image, num) {
     .catch((error) => console.log(error));
 }
 
-export { postReport };
+async function getData() {
+  await fetch(`${BASE}/api`, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+}
+
+export { postReport, getData };
