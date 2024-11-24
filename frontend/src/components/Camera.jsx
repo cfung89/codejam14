@@ -3,29 +3,41 @@ import Webcam from "react-webcam";
 
 import { postReport } from "../server";
 
-const Camera = () => {
+const Camera = ({ setUseCamera, setPicture }) => {
   const cameraRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
 
-  const takePic = useCallback(() => {
+  const handleTake = useCallback(() => {
     const imageSrc = cameraRef.current.getScreenshot();
     setImgSrc(imageSrc);
-    setImgSrc(null);
   }, [cameraRef]);
 
   // console.log(imgSrc);
   // postReport(imgSrc);
+  //
+  const handleRetake = () => {
+    setImgSrc(null);
+  };
+
+  const handlePic = () => {
+    setPicture(imgSrc);
+    setUseCamera(false);
+  };
 
   return (
     <div>
       {imgSrc ? (
-        <img src={imgSrc} alt="picture" />
+        <div>
+          <img src={imgSrc} alt="picture" />
+          <button onClick={handleRetake}>Retake picture</button>
+          <button onClick={handlePic}>Picture chosen!</button>
+        </div>
       ) : (
-        <Webcam height={600} width={600} ref={cameraRef} />
+        <div>
+          <Webcam height={600} width={600} ref={cameraRef} />
+          <button onClick={handleTake}>Take picture</button>
+        </div>
       )}
-      <div>
-        <button onClick={takePic}>Take picture</button>
-      </div>
     </div>
   );
 };

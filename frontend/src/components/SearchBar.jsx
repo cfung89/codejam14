@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
+import "../styles/Searchbar.css";
 
 // const API_KEY = import.meta.env.VITE_API_KEY;
 const API_KEY = "temp";
 
-const Home = () => {
+const SearchBar = () => {
   const [selectedLoc, setSelectedLoc] = useState(null);
 
   return (
@@ -49,9 +50,9 @@ const LocAutocomplete = ({ onLocSelect }) => {
 
   return (
     <div>
-      <input ref={inputRef} />
+      <input className="search-bar" ref={inputRef} />
     </div>
   );
 };
 
-export default Home;
+export default SearchBar;
