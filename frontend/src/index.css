@@ -6,6 +6,7 @@
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
+  font-family: "Belanosima", sans-serif;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -28,26 +29,18 @@ a:hover {
 
 body {
   margin: 0;
-  height: 100vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-center: center;
 
   /* Background properties */
-  background: url("./assets/background.svg") no-repeat center center;
+  background: url("./assets/background.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
-  /* height: 100%; */
-  /* width: 100%; */
-  /* background-image: url(./assets/background.svg); */
-  /* -o-background-size: 100% 100%; */
-  /* -webkit-background-size: 100% 100%; */
-  /* background-size: cover; */
-  /* margin: 0; */
-  /* padding: 0; */
-  /* display: flex; */
-  /* place-items: center; */
-  /* min-width: 320px; */
-  /* min-height: 100vh; */
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
 }
 
 h1 {
@@ -66,12 +59,14 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 4px auto -webkit-focus-ring-color; */
 }
 
 @media (prefers-color-scheme: light) {

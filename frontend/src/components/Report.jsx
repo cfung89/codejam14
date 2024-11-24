@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postReport } from "../server";
+import "../styles/Report.css";
 
 const Report = ({
   picture,
@@ -26,23 +27,41 @@ const Report = ({
   }
 
   return (
-    <div>
+    <div className="report-container">
       {reportMenu ? (
         <div>
-          <button onClick={handleReportMenu}>-</button>
-          <div>How many free parking spots are there around you?</div>
-          <button onClick={() => setFreeSpots("0")}>0</button>
-          <button onClick={() => setFreeSpots("1")}>1</button>
-          <button onClick={() => setFreeSpots("2")}>2</button>
-          <button onClick={() => setFreeSpots("3")}>3</button>
-          <button onClick={() => setFreeSpots("4")}>4</button>
-          <button onClick={handleOpenCam}>
-            Take a picture of the nearest sign!
+          <button onClick={handleReportMenu} className="trigger-button">
+            -
           </button>
-          <button onClick={handleReportSubmit}>Submit</button>
+          <div className="drop-up-menu">
+            <div>How many free parking spots are there around you?</div>
+            <button onClick={() => setFreeSpots("0")} className="menu-button">
+              0
+            </button>
+            <button onClick={() => setFreeSpots("1")} className="menu-button">
+              1
+            </button>
+            <button onClick={() => setFreeSpots("2")} className="menu-button">
+              2
+            </button>
+            <button onClick={() => setFreeSpots("3")} className="menu-button">
+              3
+            </button>
+            <button onClick={() => setFreeSpots("4")} className="menu-button">
+              4
+            </button>
+            <br />
+            <button onClick={handleOpenCam}>
+              Take a picture of the nearest sign!
+            </button>
+            <br />
+            <button onClick={handleReportSubmit}>Submit</button>
+          </div>
         </div>
       ) : (
-        <button onClick={handleReportMenu}>+</button>
+        <button onClick={handleReportMenu} className="trigger-button">
+          +
+        </button>
       )}
     </div>
   );

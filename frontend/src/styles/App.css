@@ -6,10 +6,9 @@
 }
 
 .title {
-  font-family: "Belanosima", sans-serif;
   font-weight: 400;
+  font-size: 5em;
   font-style: normal;
-  /* top: 103%; */
   margin-top: 10vh;
-  margin-bottom: 20vh;
+  margin-bottom: 3vh;
 }
