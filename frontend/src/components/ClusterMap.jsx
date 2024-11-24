@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import {APIProvider, Map, useMap, AdvancedMarker} from '@vis.gl/react-google-maps';
+import {APIProvider, Map, useMap, AdvancedMarker, InfoWindow} from '@vis.gl/react-google-maps';
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import parkingsigns from "../parking.json";
+import "../styles/ClusterMap.css";
 
 function ClusterMap() {
   let points = [];
@@ -11,12 +12,12 @@ function ClusterMap() {
 
   let center = {lat: 45.50604773718506, lng: -73.57832268309552};
   const API_KEY = import.meta.env.VITE_API_KEY;
-  console.log(API_KEY);
   return (
     <>
-  <APIProvider apiKey="AIzaSyDhaEMXcdRKB73ypkIDbLvayJrWfQXNqCQ">
+  <APIProvider apiKey={API_KEY}>
+    <div className="map">
     <Map
-      style={{width: '100vw', height: '100vh'}}
+      style={{width: '55vw', height: '65vh'}}
 
       defaultCenter={center}
       defaultZoom={10}
@@ -24,6 +25,7 @@ function ClusterMap() {
       disableDefaultUI={true}
       mapId="d099627e4ebae63d"
     />
+    </div>
     <Markers points={points}/>
   </APIProvider>
     </>
@@ -36,6 +38,7 @@ const Markers = (props) => {
 	const map = useMap();
 	const [markers, setMarkers] = useState({});
 	const clusterer = useRef(null);
+	const [infowindowOpen, setInfowindowOpen] = useState(null);
 	useEffect(() => {
 		if (!map) return;
 		if (!clusterer.current) {
@@ -68,7 +71,28 @@ const Markers = (props) => {
 
 	return (
 		<>
-		{ props.points.map( (point, index) =>  <AdvancedMarker key={index} position={point} ref={(marker) => setMarkerRef(marker, index)}/> ) }
+		{ 
+			props.points.map( (point, index) =>  <AdvancedMarker key={index} position={point} onClick={() => setInfowindowOpen(index)} ref={(marker) => setMarkerRef(marker, index)}/> )
+
+		}
+			{ infowindowOpen && (
+					<InfoWindow
+					  anchor={markers[infowindowOpen]}
+					  maxWidth={200}
+					  onCloseClick={() => setInfowindowOpen(null)}>
+				 	  <div>
+					  Road: Rue Commune, Montreal
+				 	  </div>
+
+					  <b>
+					  Votes: 10 |  
+					  Pricing: 0$ | 
+				          Time: 24h  
+				          </b>
+					  </InfoWindow>
+				      ) 
+			}
+ 
 		</>
 	);
 

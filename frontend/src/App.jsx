@@ -39,6 +39,10 @@ const App = () => {
       <HashLink smooth to="home#maps">
         <SearchBar />
       </HashLink>
+	<div>
+      <ClusterMap />
+      </div>
+
       <div id="maps">
         {useCamera ? (
           <Camera setUseCamera={setUseCamera} setPicture={setPicture} />
@@ -52,8 +56,7 @@ const App = () => {
           />
         )}
       </div>
-      <ClusterMap />
-    </div>
+          </div>
   );
 };
 

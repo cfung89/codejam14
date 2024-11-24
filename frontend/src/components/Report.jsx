@@ -51,11 +51,11 @@ const Report = ({
               4
             </button>
             <br />
-            <button onClick={handleOpenCam}>
+            <button className="camera-button" onClick={handleOpenCam}>
               Take a picture of the nearest sign!
             </button>
             <br />
-            <button onClick={handleReportSubmit}>Submit</button>
+            <button className="submit-button" onClick={handleReportSubmit}>Submit</button>
           </div>
         </div>
       ) : (

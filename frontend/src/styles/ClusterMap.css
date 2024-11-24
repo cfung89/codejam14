@@ -1,0 +1,10 @@
+.map {
+	display: flex;
+	align-items: center;
+	border-radius: 80px;
+	overflow: hidden;
+        flex: 1;
+        padding: 10px 15px;
+        outline: none;
+
+}
