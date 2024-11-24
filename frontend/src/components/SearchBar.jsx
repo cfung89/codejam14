@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
-import "../styles/Searchbar.css";
+import "../styles/SearchBar.css";
 import searchButton from "../assets/search.svg";
 
-// const API_KEY = import.meta.env.VITE_API_KEY;
-const API_KEY = "temp";
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const SearchBar = () => {
   const [selectedLoc, setSelectedLoc] = useState(null);

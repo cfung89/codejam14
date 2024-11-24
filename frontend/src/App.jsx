@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import Report from "./components/Report";
 import SearchBar from "./components/SearchBar";
 import Camera from "./components/Camera";
+import ClusterMap from "./components/ClusterMap.jsx";
 
 import "./styles/App.css";
 
@@ -51,6 +52,7 @@ const App = () => {
           />
         )}
       </div>
+      <ClusterMap />
     </div>
   );
 };
