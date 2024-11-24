@@ -91,7 +91,7 @@ def mongoAdd(request: dict, hour: str):
             "22": 0,
             "23": 0,
         }
-        a.append()
+        a.append(temp)
     with open("data.json", "w") as f:
         f.write(json.dumps(a))
     return
