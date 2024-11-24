@@ -1,4 +1,6 @@
 *.csv
 *.json
 .venv
+.env
 temp/
+__pycache__/

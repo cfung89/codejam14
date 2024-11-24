@@ -5,25 +5,50 @@ import Report from "./components/Report";
 import SearchBar from "./components/SearchBar";
 import Camera from "./components/Camera";
 
-import background from "./assets/background.svg";
-import "./App.css";
+import "./styles/App.css";
 
 const App = () => {
+  const [reportMenu, setReportMenu] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
   const [picture, setPicture] = useState("");
-  console.log(picture);
-  // <img src={background} alt="background" className="background" />
+  const [location, setLocation] = useState("");
+
+  if (!location) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation not supported");
+    }
+  }
+
+  function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    setLocation({ Latitude: latitude, Longitude: longitude });
+  }
+
+  function error() {
+    console.log("Unable to retrieve your location");
+    setReportMenu(false);
+  }
+
   return (
     <div>
-      <SearchBar />
+      <h1 className="title">Park n' Chill</h1>
       <HashLink smooth to="home#maps">
-        <button>test</button>
+        <SearchBar />
       </HashLink>
       <div id="maps">
         {useCamera ? (
           <Camera setUseCamera={setUseCamera} setPicture={setPicture} />
         ) : (
-          <Report picture={picture} setUseCamera={setUseCamera} />
+          <Report
+            picture={picture}
+            location={location}
+            setUseCamera={setUseCamera}
+            reportMenu={reportMenu}
+            setReportMenu={setReportMenu}
+          />
         )}
       </div>
     </div>

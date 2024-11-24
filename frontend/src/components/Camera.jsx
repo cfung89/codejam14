@@ -1,8 +1,6 @@
 import { useRef, useCallback, useState } from "react";
 import Webcam from "react-webcam";
 
-import { postReport } from "../server";
-
 const Camera = ({ setUseCamera, setPicture }) => {
   const cameraRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
@@ -12,9 +10,6 @@ const Camera = ({ setUseCamera, setPicture }) => {
     setImgSrc(imageSrc);
   }, [cameraRef]);
 
-  // console.log(imgSrc);
-  // postReport(imgSrc);
-  //
   const handleRetake = () => {
     setImgSrc(null);
   };

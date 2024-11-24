@@ -1,12 +1,15 @@
 const BASE = "http://127.0.0.1:5000";
 
-async function postLocation(lat, long) {
+async function postReport(location, image, num) {
+  console.log("SENDING DATA");
   const request = {
-    latitude: lat,
-    longitude: long,
+    Location: location,
+    Image: image,
+    NumFreeSpots: num,
+    Time: new Date().toLocaleString(),
   };
 
-  await fetch(`${BASE}/location`, {
+  await fetch(`${BASE}/report`, {
     method: "POST",
     body: JSON.stringify(request),
     headers: { "Content-type": "application/json" },
@@ -16,26 +19,4 @@ async function postLocation(lat, long) {
     .catch((error) => console.log(error));
 }
 
-async function postFreeSpots(num) {
-  await fetch(`${BASE}/free`, {
-    method: "POST",
-    body: JSON.stringify({ freeSpots: num }),
-    headers: { "Content-type": "application/json" },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
-}
-
-async function postReport(image) {
-  await fetch(`${BASE}/report`, {
-    method: "POST",
-    body: JSON.stringify({ img: image }),
-    headers: { "Content-type": "application/json" },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
-}
-
-export { postLocation, postReport, postFreeSpots };
+export { postReport };
