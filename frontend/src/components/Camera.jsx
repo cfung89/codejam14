@@ -1,5 +1,6 @@
 import { useRef, useCallback, useState } from "react";
 import Webcam from "react-webcam";
+import "../styles/Camera.css";
 
 const Camera = ({ setUseCamera, setPicture }) => {
   const cameraRef = useRef(null);
@@ -29,7 +30,7 @@ const Camera = ({ setUseCamera, setPicture }) => {
         </div>
       ) : (
         <div>
-          <Webcam height={600} width={600} ref={cameraRef} />
+          <Webcam className="webcam" height={600} width={600} ref={cameraRef} />
           <button onClick={handleTake}>Take picture</button>
         </div>
       )}
